@@ -1,28 +1,27 @@
-const $arenas = document.querySelector('.arenas');
+const $arenas = document.querySelector('.root .arenas');
 const player1 = {
     name : 'Scorpion',
     hp : 80,
     img : '',
     weapon : ['glock','katana','knife'],
-    img : src = ("/caracter/scorpion.gif"),
+    img : src = "/caracter/scorpion.gif",
     attack : function () {
         console.log(player1.name,'fight...');
     }
 }
 const player2 = {
     name : 'Kitana',
-    hp : 50,
+    hp : 10,
     img : '',
     weapon : ['glock','katana','knife'],
-    img : src = ("/caracter/kitana.gif"),
+    img : src = "/caracter/kitana.gif",
     attack : function () {
         console.log(player2.name,'fight...');
     }
 }
-player1.attack()
-function createPlayer (playerId,playerName,hp,imgHero) {
+function createPlayer (player,character){
     const $player1 = document.createElement('div');
-    $player1.className = playerId;
+    $player1.className = player;
 
     const $progressbar =document.createElement('div');
     $progressbar.className = "progressbar";
@@ -33,22 +32,21 @@ function createPlayer (playerId,playerName,hp,imgHero) {
     $player1.appendChild($progressbar);
     $player1.appendChild($character);
     
-    
 
     const $life =  document.createElement('div');
     $life.className = 'life';
-    $life.innerHTML = hp;
+    $life.style.width = character.hp + "%" ;
     const $name = document.createElement('div');
     $name.className = 'name';
-    $name.innerHTML = playerName;
+    $name.innerText = character.name;
 
     const $img = document.createElement('img');
-    $img.src = imgHero;    
+    $img.src = character.img;    
     $progressbar.appendChild($life);
     $progressbar.appendChild($name);
     $character.appendChild($img)
     $arenas.appendChild($player1);
-    console.log($player1);
 }
-createPlayer('player1',player1['name'],player1['hp'],player1["img"]);
-createPlayer('player2',player2['name'],player2['hp'],player2["img"])
+createPlayer('player1',player1);
+createPlayer('player2',player2);
+
